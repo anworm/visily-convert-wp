@@ -1,0 +1,717 @@
+/*
+Theme Name: Visily Convert Theme
+Theme URI: https://visily.ai
+Author: Visily Team
+Author URI: https://visily.ai
+Description: A custom WordPress theme for Visily Convert project. Designed for high-performance landing pages and conversion optimization.
+Version: 1.0.0
+Requires at least: 5.8
+Tested up to: 6.4
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: visily-convert-theme
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+*/
+
+/* ==========================================================================
+   Reset & Base Styles
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333333;
+    background-color: #ffffff;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    color: #0073aa;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+    color: #005177;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    color: #222222;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+ul, ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.25rem;
+}
+
+blockquote {
+    border-left: 4px solid #0073aa;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    background-color: #f8f9fa;
+    font-style: italic;
+    color: #555555;
+}
+
+code {
+    font-family: "Courier New", Courier, monospace;
+    background-color: #f4f4f4;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+pre {
+    background-color: #f4f4f4;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.site-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-content {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+/* Grid System */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -0.75rem;
+}
+
+.col {
+    flex: 1;
+    padding: 0 0.75rem;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.site-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.site-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.site-branding {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.custom-logo {
+    max-height: 50px;
+    width: auto;
+}
+
+.site-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.site-title a {
+    color: #222222;
+    text-decoration: none;
+}
+
+.site-title a:hover {
+    color: #0073aa;
+}
+
+.site-description {
+    font-size: 0.875rem;
+    color: #666666;
+    margin: 0;
+}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+
+.main-navigation {
+    display: flex;
+    align-items: center;
+}
+
+.main-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.main-navigation ul li {
+    position: relative;
+    margin: 0;
+}
+
+.main-navigation ul li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #333333;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.main-navigation ul li a:hover,
+.main-navigation ul li a:focus,
+.main-navigation ul li.current-menu-item > a {
+    background-color: #0073aa;
+    color: #ffffff;
+}
+
+/* Dropdown */
+.main-navigation ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+    flex-direction: column;
+    gap: 0;
+    z-index: 9999;
+}
+
+.main-navigation ul li:hover > ul {
+    display: flex;
+}
+
+.main-navigation ul ul li a {
+    border-radius: 0;
+    color: #333333;
+}
+
+.main-navigation ul ul li a:hover {
+    background-color: #f5f5f5;
+    color: #0073aa;
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid #cccccc;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+    background-color: #222222;
+    color: #cccccc;
+    padding: 3rem 0 0;
+}
+
+.footer-widgets {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-widget h2,
+.footer-widget h3 {
+    color: #ffffff;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #0073aa;
+    display: inline-block;
+}
+
+.footer-widget a {
+    color: #cccccc;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-widget a:hover {
+    color: #ffffff;
+}
+
+.footer-widget ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-widget ul li {
+    margin-bottom: 0.5rem;
+}
+
+.site-info {
+    border-top: 1px solid #444444;
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #999999;
+}
+
+.site-info a {
+    color: #cccccc;
+}
+
+.site-info a:hover {
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   Posts & Pages
+   ========================================================================== */
+
+.post,
+.page {
+    margin-bottom: 2rem;
+}
+
+.entry-header {
+    margin-bottom: 1.5rem;
+}
+
+.entry-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.entry-title a {
+    color: #222222;
+    text-decoration: none;
+}
+
+.entry-title a:hover {
+    color: #0073aa;
+}
+
+.entry-meta {
+    font-size: 0.875rem;
+    color: #666666;
+    margin-bottom: 1rem;
+}
+
+.entry-meta a {
+    color: #666666;
+}
+
+.entry-meta a:hover {
+    color: #0073aa;
+}
+
+.entry-meta span {
+    margin-right: 1rem;
+}
+
+.entry-meta span::before {
+    margin-right: 0.25rem;
+}
+
+.post-thumbnail {
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.post-thumbnail img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.post-thumbnail:hover img {
+    transform: scale(1.02);
+}
+
+.entry-content {
+    line-height: 1.8;
+}
+
+.entry-content > * + * {
+    margin-top: 1rem;
+}
+
+.entry-footer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e0e0e0;
+    font-size: 0.875rem;
+    color: #666666;
+}
+
+.cat-links,
+.tags-links {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Read More */
+.read-more-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1.25rem;
+    background-color: #0073aa;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.read-more-link:hover {
+    background-color: #005177;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+
+.widget-area {
+    padding-left: 2rem;
+}
+
+.widget {
+    margin-bottom: 2rem;
+}
+
+.widget-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #0073aa;
+}
+
+/* ==========================================================================
+   Pagination
+   ========================================================================== */
+
+.pagination,
+.posts-navigation,
+.post-navigation {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.nav-links {
+    display: inline-flex;
+    gap: 0.5rem;
+}
+
+.page-numbers,
+.nav-previous a,
+.nav-next a {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    color: #333333;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.page-numbers:hover,
+.nav-previous a:hover,
+.nav-next a:hover,
+.page-numbers.current {
+    background-color: #0073aa;
+    border-color: #0073aa;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #333333;
+    background-color: #ffffff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #0073aa;
+    box-shadow: 0 0 0 3px rgba(0, 115, 170, 0.2);
+}
+
+button,
+input[type="submit"],
+.button {
+    display: inline-block;
+    padding: 0.625rem 1.5rem;
+    background-color: #0073aa;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover,
+input[type="submit"]:hover,
+.button:hover {
+    background-color: #005177;
+}
+
+/* ==========================================================================
+   Comments
+   ========================================================================== */
+
+.comments-area {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+}
+
+.comment {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 3px solid #0073aa;
+}
+
+.comment-meta {
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    color: #666666;
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+.skip-link {
+    display: block;
+    position: absolute;
+    top: -999px;
+    left: 0;
+    background-color: #0073aa;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    z-index: 9999;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+.alignleft {
+    float: left;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+}
+
+.alignright {
+    float: right;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.aligncenter {
+    display: block;
+    margin: 0 auto 1rem;
+}
+
+.wp-caption {
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+.wp-caption-text {
+    font-size: 0.875rem;
+    color: #666666;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+
+    .site-header .container {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .main-navigation ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #ffffff;
+        border-top: 1px solid #e0e0e0;
+        padding-top: 0.5rem;
+    }
+
+    .main-navigation.toggled ul {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .widget-area {
+        padding-left: 0;
+        margin-top: 2rem;
+    }
+
+    .footer-widgets {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .footer-widgets {
+        grid-template-columns: 1fr;
+    }
+}
